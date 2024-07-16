@@ -8,7 +8,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
+  const MainScreen({super.key, required this.username});
+  final String username;
 
   @override
   State<MainScreen> createState() => _MainScreenState();
@@ -21,14 +22,22 @@ class _MainScreenState extends State<MainScreen> {
     CupertinoIcons.briefcase,
     CupertinoIcons.group
   ];
-    int _bottomNavIndex = 0;
+  int _bottomNavIndex = 0;
 
-     List<Widget> pages = [
-      HomeScreen(),
+  List<Widget> pages = [];
+
+  @override
+  void initState() {
+    pages = [
+      HomeScreen(
+        username: widget.username,
+      ),
       BlogScreen(),
       PlanScreen(),
       CommunityScreen(),
-     ];
+    ];
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,8 +48,12 @@ class _MainScreenState extends State<MainScreen> {
         floatingActionButton: FloatingActionButton(
           backgroundColor: themeColor,
           shape: CircleBorder(),
-          onPressed: (){},child: Icon(Icons.add,color: wColor,),),
-       
+          onPressed: () {},
+          child: Icon(
+            Icons.add,
+            color: wColor,
+          ),
+        ),
         bottomNavigationBar: AnimatedBottomNavigationBar(
           backgroundColor: bgColor,
           icons: iconList,
@@ -51,8 +64,7 @@ class _MainScreenState extends State<MainScreen> {
           notchSmoothness: NotchSmoothness.verySmoothEdge,
           leftCornerRadius: 32,
           rightCornerRadius: 32,
-          onTap: (index)  {
-            
+          onTap: (index) {
             setState(() => _bottomNavIndex = index);
           },
           //other params

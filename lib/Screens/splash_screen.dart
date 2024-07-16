@@ -1,4 +1,5 @@
 import 'package:equinox_task/Screens/login_screen.dart';
+import 'package:equinox_task/Screens/signup_screen.dart';
 import 'package:equinox_task/Utils/colors.dart';
 import 'package:equinox_task/Widgets/theme_button.dart';
 import 'package:flutter/material.dart';
@@ -47,7 +48,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 child: themeButton("Start Here",(){Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => LoginScreen()));})),
+                            builder: (context) => SignUpScreen()));})),
             Positioned(
                 top: 180.h,
                 left: 40.w,
